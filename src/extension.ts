@@ -1,5 +1,6 @@
 // Import the module and reference it with the alias vscode in your code below
 import * as vscode from 'vscode';
+import { AusFilterDataCommand } from './commands/AusFilterDataCommand';
 
 // this method is called when your extension is activated
 // your extension is activated the very first time the command is executed
@@ -18,4 +19,8 @@ export function activate(context: vscode.ExtensionContext) {
         vscode.window.showInformationMessage('Hello to GDSC FRI!');
     });
     context.subscriptions.push(disposable);
+
+
+    const cmdAusFilterData = vscode.commands.registerCommand('gdscfri.aus-filter-data', AusFilterDataCommand.run);
+    context.subscriptions.push(cmdAusFilterData);
 }

@@ -18,6 +18,10 @@
             {
                 "command": "gdscfri.hello",
                 "title": "GDSC FRI: Hello"
+            },
+            {
+                "command": "gdscfri.aus-filter-data",
+                "title": "GDSC FRI: AUS filter data"
             }
         ]
     },
