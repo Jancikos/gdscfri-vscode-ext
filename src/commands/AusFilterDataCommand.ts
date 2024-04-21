@@ -18,23 +18,39 @@ export class AusFilterDataCommand {
         const villageLoader = new VillageLoader(pathToCSV as string);
         const data = villageLoader.loadVillages();
 
+        // filter the data
+        const filterQuery = await vscode.window.showInputBox({
+            placeHolder: 'Filter query'
+        });
+
+        if (!filterQuery) {
+            vscode.window.showErrorMessage('Filter query cant be empty.');
+            return;
+        }
+
+        // execute filter
+        const filteredData = data
+            .filter(village => village.name.startsWith(filterQuery))
+            .sort((a, b) => a.name.localeCompare(b.name));
+
         // output data
         let outputContent = '';
 
         outputContent +=
             `# Villages
 Loaded from \`${pathToCSV}\`.\n
-Total count \`${data.length}\`.\n
+Filter query \`${filterQuery}\`.\n
+Total count \`${filteredData.length}\`.\n
 
 `;
 
-        outputContent += '| Name | Code | Type |\n';
+        outputContent += '| Code | Name | Type |\n';
         outputContent += '| ---- | ---- | ---- |\n';
-        data.forEach(village => {
-            outputContent += `| ${village.name} | ${village.code} | ${village.type} |\n`;
+        filteredData.forEach(village => {
+            outputContent += `| ${village.code} | ${village.name} | ${village.type} |\n`;
         });
 
-        // output data into new file
+        // output filteredData into new file
         const document = await vscode.workspace.openTextDocument({
             content: outputContent,
             language: 'markdown'
