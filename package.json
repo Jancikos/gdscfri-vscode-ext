@@ -23,7 +23,18 @@
                 "command": "gdscfri.aus-filter-data",
                 "title": "GDSC FRI: AUS filter data"
             }
-        ]
+        ],
+        "configuration": {
+            "type": "object",
+            "title": "GDSC FRI",
+            "properties": {
+                "gdscfri.aus.pathToVillages": {
+                    "type": "string",
+                    "default": "data/aus/CR.csv",
+                    "description": "Path to the AUS villages CSV data file"
+                }
+            }
+        }
     },
     "scripts": {
         "vscode:prepublish": "npm run compile",
