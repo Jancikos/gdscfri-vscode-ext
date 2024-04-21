@@ -9,18 +9,42 @@ export class AusFilterDataCommand {
         vscode.window.showInformationMessage('Aus Filter Data command');
 
         // load the villages
-        const pathToCSV = config.get('gdscfri.aus.pathToVillages'); 
+        const pathToCSV = config.get('gdscfri.aus.pathToVillages');
         if (!pathToCSV) {
             vscode.window.showErrorMessage('Path to villages is not set. Set it in extension settings.');
             return;
         }
 
         const villageLoader = new VillageLoader(pathToCSV as string);
-
         const data = villageLoader.loadVillages();
 
-        // show info that the villages are loaded
-        vscode.window.showInformationMessage('Villages are loaded');
+        // output data
+        let outputContent = '';
+
+        outputContent +=
+            `# Villages
+Loaded from \`${pathToCSV}\`.\n
+Total count \`${data.length}\`.\n
+
+`;
+
+        outputContent += '| Name | Code | Type |\n';
+        outputContent += '| ---- | ---- | ---- |\n';
+        data.forEach(village => {
+            outputContent += `| ${village.name} | ${village.code} | ${village.type} |\n`;
+        });
+
+        // output data into new file
+        const document = await vscode.workspace.openTextDocument({
+            content: outputContent,
+            language: 'markdown'
+        });
+
+        await vscode.window.showTextDocument(document);
+        // show markdown preview
+        await vscode.commands.executeCommand('markdown.showPreview', document.uri);
+
+
     }
 
 }
