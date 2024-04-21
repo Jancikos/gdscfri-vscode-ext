@@ -1,0 +1,38 @@
+{
+    "name": "gdscfri",
+    "displayName": "GDSC FRI",
+    "description": "VS Code extension created for GDSC FRI",
+    "version": "0.0.1",
+    "publisher": "jancikos",
+    "repository": "https://github.com/jancikos/gdscfri-vscode-ext",
+    "engines": {
+        "vscode": "^1.74.0"
+    },
+    "categories": [
+        "Other"
+    ],
+    "activationEvents": [],
+    "main": "./out/extension.js",
+    "contributes": {
+        "commands": [
+            {
+                "command": "gdscfri.hello",
+                "title": "GDSC FRI: Hello"
+            }
+        ]
+    },
+    "scripts": {
+        "vscode:prepublish": "npm run compile",
+        "compile": "tsc -p ./",
+        "lint": "eslint \"src/**/*.ts\"",
+        "watch": "tsc -watch -p ./"
+    },
+    "devDependencies": {
+        "@types/node": "^18",
+        "@types/vscode": "^1.73.0",
+        "@typescript-eslint/eslint-plugin": "^6.7.0",
+        "@typescript-eslint/parser": "^6.7.0",
+        "eslint": "^8.26.0",
+        "typescript": "^5.4.2"
+    }
+}
