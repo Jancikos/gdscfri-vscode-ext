@@ -1,10 +1,11 @@
 {
     "name": "gdscfri",
     "displayName": "GDSC FRI",
-    "description": "VS Code extension created for GDSC FRI",
-    "version": "0.0.1",
+    "description": "VS Code extension created for GDSC event on FRI UNIZA",
+    "version": "0.0.2",
     "publisher": "jancikos",
     "repository": "https://github.com/jancikos/gdscfri-vscode-ext",
+    "icon": "images/icon.png",
     "engines": {
         "vscode": "^1.74.0"
     },
@@ -15,10 +16,6 @@
     "main": "./out/extension.js",
     "contributes": {
         "commands": [
-            {
-                "command": "gdscfri.hello",
-                "title": "GDSC FRI: Hello"
-            },
             {
                 "command": "gdscfri.aus-filter-data",
                 "title": "GDSC FRI: AUS filter data"
