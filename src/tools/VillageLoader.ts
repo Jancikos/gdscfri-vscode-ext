@@ -24,7 +24,7 @@ export class VillageLoader {
                 continue;
             }
 
-            const [code, name, type] = columns.slice(4, 7);
+            const [name, code, type] = columns.slice(4, 7);
 
             if (code === '' || name === '' || type === '') {
                 continue;
